@@ -226,10 +226,30 @@
 </div>
 </div><br> 
 <div dir="rtl">
-    <h3>
+    <h1>
+تغییر رنگ تمام ترمینال
+    </h1>
+    دستور زیر رنگ زمینه‌ی تمام ترمینال را به بنقش تغییر می‌دهد.
+</div>
+<pre><code class="language-bash">echo -ne "\033]11;#53186f\007"
+</code></pre>
+<div style="width:600px">
+<p><img src="./bg-whole.png" alt="img" /></p>
+</div>
+<div dir="rtl">دستور بعدی رنگ پیش‌زمینه‌ی تمام ترمینال را به سبز تغییر می‌دهد.</div>
+<pre><code class="language-bash">echo -ne "\033]10;#00ff44\007"
+</code></pre>
+<div style="width:600px">
+<p><img src="./fg-whole.png" alt="img" /></p>
+</div>
+<br> 
+<br> 
+<div dir="rtl">
+    <h1>
 کارهای دیگری که می‌توان با کدهای انسی انجام داد
-    </h3>
-<p>جابجایی نشانگر می‌توانید موقعیت نشانگر را در پنجره ترمینال کنترل کنید</p>
+    </h1>
+<h3 id="جابجایی-نشانگر"><a class="header" href="#جابجایی-نشانگر">جابجایی نشانگر</a></h3>
+می‌توانید موقعیت نشانگر را در پنجره ترمینال کنترل کنید
 </div><br> 
 <div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
 <tr><td><code>\033[A</code></td><td>حرکت نشانگر به بالا</td></tr>
