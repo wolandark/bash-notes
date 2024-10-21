@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Bash Notes</title>
-        <meta name="robots" content="noindex">
+        <title>Hello World - Bash Notes</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="ANSI.html"><strong aria-hidden="true">1.</strong> ANSI Sequences</a></li><li class="chapter-item expanded "><a href="HelloWorld.html"><strong aria-hidden="true">2.</strong> Hello World</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="ANSI.html"><strong aria-hidden="true">1.</strong> ANSI Sequences</a></li><li class="chapter-item expanded "><a href="HelloWorld.html" class="active"><strong aria-hidden="true">2.</strong> Hello World</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,190 +173,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div style="text-align:center">
-    <h1>
-    ANSI Control Sequences
-    </h1>
-</div>
-<div dir="rtl">
-    <h1>
-کدهای کنترل انسی
-    </h1>
-    کدهای کنترل انسی برای تغییر عملکرد ترمینال، اعم از رنگ، استایل، شکل و مکان نشانگر و بسیاری دیگر استفاده می‌شوند.<br><br>  
-<strong style="color:red">تمام کدهای این صفحه با
-    <code>echo -e</code> 
-    اجرا می‌شوند.
-</strong> 
-</div><br> 
-<div dir="rtl"><strong>جدول زیر مشخصات رایج‌ترین کدها را نشان می‌دهد</strong></div>
-<div class="table-wrapper"><table><thead><tr><th>رنگ</th><th>کد متن پیش‌زمینه</th><th>کد پس‌زمینه</th></tr></thead><tbody>
-<tr><td>مشکی</td><td>\033[0;30m</td><td>\033[40m</td></tr>
-<tr><td>قرمز</td><td>\033[0;31m</td><td>\033[41m</td></tr>
-<tr><td>سبز</td><td>\033[0;32m</td><td>\033[42m</td></tr>
-<tr><td>زرد</td><td>\033[0;33m</td><td>\033[43m</td></tr>
-<tr><td>آبی</td><td>\033[0;34m</td><td>\033[44m</td></tr>
-<tr><td>بنفش</td><td>\033[0;35m</td><td>\033[45m</td></tr>
-<tr><td>فیروزه</td><td>\033[0;36m</td><td>\033[46m</td></tr>
-<tr><td>سفید</td><td>\033[0;37m</td><td>\033[47m</td></tr>
-<tr><td>ریست کردن رنگ‌ها</td><td>\033[0m</td><td></td></tr>
-</tbody></table>
-</div><div dir="rtl"><strong> مثال: </strong></div>
-<pre><code class="language-bash">echo -e "\033[0;31mHello World\033[0m"
-این دستور "درود جهان" را با رنگ قرمز چاپ می‌کند.
-</code></pre>
-<div style="width:600px">
-<p><img src="./red-text.png" alt="img" /></p>
-</div>
-<div dir="rtl">همانطور که می‌بینید در مثال بالا ما فقط رنگ پیش‌زمینه را تغییر دادیم 
-اگر بخواهیم فقط رنگ پس‌زمینه را تغییر دهیم مانند زیر عمل می‌کنیم
-</div>
-<pre><code class="language-bash">echo -e "\033[0;41mHello World\033[0m"
-این دستور "درود جهان" را با رنگ قرمز در پس‌زمینه چاپ می‌کند
-</code></pre>
-<div style="width:600px">
-<p><img src="./red-bg.png" alt="img" /></p>
-</div>
-<div dir="rtl">و اگر بخواهیم هردو رنگ پیش و پس‌ زمینه  را تغییر دهیم به شکل زیر عمل می کنیم</div>
-<pre><code class="language-bash">echo -e "\033[30;42mHello World\033[0m"
-این دستور "درود جهان" را با رنگ مشکی در پس‌زمینه سبز چاپ می‌کند
-
-</code></pre>
-<div style="width:600px">
-<p><img src="./bg-fg.png" alt="img" /></p>
-</div>
-</div><br> 
-<div dir="rtl">
-    <h1>
-تغییر رنگ تمام ترمینال
-    </h1>
-    دستور زیر رنگ زمینه‌ی تمام ترمینال را به بنقش تغییر می‌دهد.
-</div>
-<pre><code class="language-bash">echo -ne "\033]11;#53186f\007"
-</code></pre>
-<div style="width:600px">
-<p><img src="./bg-whole.png" alt="img" /></p>
-</div>
-<div dir="rtl">دستور بعدی رنگ پیش‌زمینه‌ی تمام ترمینال را به سبز تغییر می‌دهد.</div>
-<pre><code class="language-bash">echo -ne "\033]10;#00ff44\007"
-</code></pre>
-<div style="width:600px">
-<p><img src="./fg-whole.png" alt="img" /></p>
-</div>
-<br> 
-<br> 
-<div dir="rtl">
-    <h1>
-کارهای دیگری که می‌توان با کدهای انسی انجام داد
-    </h1>
-<h3>
-جابجایی نشانگر
-</h3>
-می‌توانید موقعیت نشانگر را در پنجره ترمینال کنترل کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[A</code></td><td>حرکت نشانگر به بالا</td></tr>
-<tr><td><code>\033[B</code></td><td>حرکت نشانگر به پایین</td></tr>
-<tr><td><code>\033[C</code></td><td>حرکت نشانگر به جلو (راست)</td></tr>
-<tr><td><code>\033[D</code></td><td>حرکت نشانگر به عقب (چپ)</td></tr>
-<tr><td><code>\033[&lt;row&gt;;&lt;column&gt;H</code></td><td>تنظیم موقعیت نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-پاک کردن متن
-    </h3>
- می‌توانید بخش‌هایی از صفحه یا کل صفحه را پاک کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[0J</code></td><td>پاک کردن صفحه از نشانگر تا انتها</td></tr>
-<tr><td><code>\033[1J</code></td><td>پاک کردن صفحه از ابتدا تا نشانگر</td></tr>
-<tr><td><code>\033[2J</code></td><td>پاک کردن کل صفحه</td></tr>
-<tr><td><code>\033[0K</code></td><td>پاک کردن خط از نشانگر تا انتها</td></tr>
-<tr><td><code>\033[1K</code></td><td>پاک کردن خط از ابتدا تا نشانگر</td></tr>
-<tr><td><code>\033[2K</code></td><td>پاک کردن کل خط</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    اسکرول
-    </h3>
-می‌توانید اسکرول را درون ترمینال کنترل کنید*
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[S</code></td><td>اسکرول به بالا یک خط</td></tr>
-<tr><td><code>\033[T</code></td><td>اسکرول به پایین یک خط</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h1>
-    نشانگر
-    </h1>
-    <h3>
-ذخیره و بازیابی موقعیت نشانگر
-    </h3>
-می‌توانید موقعیت فعلی نشانگر را ذخیره کرده و بعدا بازیابی کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[s</code></td><td>ذخیره موقعیت نشانگر</td></tr>
-<tr><td><code>\033[u</code></td><td>بازیابی موقعیت نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    مخفی کردن و نمایش نشانگر
-    </h3>
-ر می‌توانید نشانگر را مخفی یا نمایش دهید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[?25l</code></td><td>مخفی کردن نشانگر</td></tr>
-<tr><td><code>\033[?25h</code></td><td>نمایش نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    شکل نشانگر
-    </h3>
- می‌توانید نشانگر را به بلاک یا خط صاف تغییر دهید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\e[0 q</code></td><td>(پیش‌فرض) شکل یک بلوک</td></tr>
-<tr><td><code>\e[1 q</code></td><td>شکل یک بلوک چشمک‌زن</td></tr>
-<tr><td><code>\e[3 q</code></td><td>شکل یک خط زیرین چشمک‌زن</td></tr>
-<tr><td><code>\e[4 q</code></td><td>شکل یک خط زیرین</td></tr>
-<tr><td><code>\e[5 q</code></td><td>شکل یک خط عمودی چشمک‌زن</td></tr>
-<tr><td><code>\e[6 q</code></td><td>شکل یک خط عمودی چشمک‌زن</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h1>
-    افکت‌های متن
-    </h1>
-</div>
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\e[1m</code></td><td>Bold</td></tr>
-<tr><td><code>\e[3m</code></td><td>Italic</td></tr>
-<tr><td><code>\e[4m</code></td><td>Underline</td></tr>
-<tr><td><code>\e[5m</code></td><td>Blink</td></tr>
-<tr><td><code>\e[7m</code></td><td>Invert colors</td></tr>
-</tbody></table>
-</div><br>
-<br> 
-<pre><code class="language-bash">echo -e "\033[30;42;3mHello World\033[0m"
-این دستور "درود جهان" را با رنگ مشکی در پس‌زمینه سبز به‌صورت ایتالیک چاپ می‌کند
-
-</code></pre>
-<hr><br><br> 
-<footer>
-       <div dir="rtl" style="text-align:center"> <p> مطالب این سایت بصورت مداوم
-       به‌روز‌رسانی می‌شوند.  برای دنبال کردن مطالب این سایت را
-       بوکمارک کنید.</p> <p>جهت حمایت مالی از پروژه،
-       در صورتی که در ایران هستید، روی دکمه‌ی <a
-       href="https://www.coffeete.ir/wolandark">برام قهوه بخر</a> کلیک
-       کنید.</p> <p>جهت ارتباط با نگارنده از طریق تلگرام یا ایمیل اقدام
-       کنید.</p>
-       </div>
-</footer>
-<div style="text-align: center">
-<p><a href="https://t.me/wolandarkside"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&amp;logo=telegram&amp;logoColor=white" alt="Telegram" /></a>
-<a href="mailto:contact-woland@proton.me"><img src="https://img.shields.io/badge/ProtonMail-8B89CC?style=for-the-badge&amp;logo=protonmail&amp;logoColor=white" alt="Protonmail" /></a></p>
-</div>
-<br>
-<br>
-<div style="break-before: page; page-break-before: always;"></div><div dir="rtl"><h1 id="ساخت-یک-hello-world--خلاقانه-با--bash"><a class="header" href="#ساخت-یک-hello-world--خلاقانه-با--bash"> ساخت یک Hello World  خلاقانه با  BASH</a></h1></div>
+                        <div dir="rtl"><h1 id="ساخت-یک-hello-world--خلاقانه-با--bash"><a class="header" href="#ساخت-یک-hello-world--خلاقانه-با--bash"> ساخت یک Hello World  خلاقانه با  BASH</a></h1></div>
 <p><img src="./move_hello.gif" alt="move_hello.gif" /></p>
 <div dir="rtl">همانطور که می‌بینید با کلید‌های جهت می‌توانیم عبارت Hello World را جا‌به‌جا کنیم.</div>
 <pre><code class="language-bash">#!/usr/bin/env bash 
@@ -555,6 +371,9 @@ done
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ANSI.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -563,6 +382,9 @@ done
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ANSI.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -586,11 +408,6 @@ done
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
