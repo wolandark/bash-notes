@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Bash Notes</title>
-        <meta name="robots" content="noindex">
+        <title>Minesweep - Bash Notes</title>
 
 
         <!-- Custom HTML head -->
@@ -13,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -36,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="ANSI.html"><strong aria-hidden="true">1.</strong> ANSI Sequences</a></li><li class="chapter-item expanded "><a href="HelloWorld.html"><strong aria-hidden="true">2.</strong> Creative Hello World </a></li><li class="chapter-item expanded "><a href="Minesweep/Transcript/Minesweep.html"><strong aria-hidden="true">3.</strong> Minesweep</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../ANSI.html"><strong aria-hidden="true">1.</strong> ANSI Sequences</a></li><li class="chapter-item expanded "><a href="../../HelloWorld.html"><strong aria-hidden="true">2.</strong> Creative Hello World </a></li><li class="chapter-item expanded "><a href="../../Minesweep/Transcript/Minesweep.html" class="active"><strong aria-hidden="true">3.</strong> Minesweep</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -145,7 +144,7 @@
                     <h1 class="menu-title">Bash Notes</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -174,411 +173,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div align="right">
-<a href="http://www.coffeete.ir/wolandark">
-       <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
-</a>
-</div>
-<div style="text-align:center">
-    <h1>
-    ANSI Control Sequences
-    </h1>
-</div>
-<div dir="rtl">
-    <h1>
-کدهای کنترل انسی
-    </h1>
-    کدهای کنترل انسی برای تغییر عملکرد ترمینال، اعم از رنگ، استایل، شکل و مکان نشانگر و بسیاری دیگر استفاده می‌شوند.<br><br>  
-<strong style="color:red">تمام کدهای این صفحه با
-    <code>echo -e</code> 
-    اجرا می‌شوند.
-</strong> 
-</div><br> 
-<div dir="rtl"><strong>جدول زیر مشخصات رایج‌ترین کدها را نشان می‌دهد</strong></div>
-<div class="table-wrapper"><table><thead><tr><th>رنگ</th><th>کد متن پیش‌زمینه</th><th>کد پس‌زمینه</th></tr></thead><tbody>
-<tr><td>مشکی</td><td>\033[0;30m</td><td>\033[40m</td></tr>
-<tr><td>قرمز</td><td>\033[0;31m</td><td>\033[41m</td></tr>
-<tr><td>سبز</td><td>\033[0;32m</td><td>\033[42m</td></tr>
-<tr><td>زرد</td><td>\033[0;33m</td><td>\033[43m</td></tr>
-<tr><td>آبی</td><td>\033[0;34m</td><td>\033[44m</td></tr>
-<tr><td>بنفش</td><td>\033[0;35m</td><td>\033[45m</td></tr>
-<tr><td>فیروزه</td><td>\033[0;36m</td><td>\033[46m</td></tr>
-<tr><td>سفید</td><td>\033[0;37m</td><td>\033[47m</td></tr>
-<tr><td>ریست کردن رنگ‌ها</td><td>\033[0m</td><td></td></tr>
-</tbody></table>
-</div><div dir="rtl"><strong> مثال: </strong></div>
-<pre><code class="language-bash">echo -e "\033[0;31mHello World\033[0m"
-این دستور "درود جهان" را با رنگ قرمز چاپ می‌کند.
-</code></pre>
-<div style="width:600px">
-<p><img src="./red-text.png" alt="img" /></p>
-</div>
-<div dir="rtl">همانطور که می‌بینید در مثال بالا ما فقط رنگ پیش‌زمینه را تغییر دادیم 
-اگر بخواهیم فقط رنگ پس‌زمینه را تغییر دهیم مانند زیر عمل می‌کنیم
-</div>
-<pre><code class="language-bash">echo -e "\033[0;41mHello World\033[0m"
-این دستور "درود جهان" را با رنگ قرمز در پس‌زمینه چاپ می‌کند
-</code></pre>
-<div style="width:600px">
-<p><img src="./red-bg.png" alt="img" /></p>
-</div>
-<div dir="rtl">و اگر بخواهیم هردو رنگ پیش و پس‌ زمینه  را تغییر دهیم به شکل زیر عمل می کنیم</div>
-<pre><code class="language-bash">echo -e "\033[30;42mHello World\033[0m"
-این دستور "درود جهان" را با رنگ مشکی در پس‌زمینه سبز چاپ می‌کند
-
-</code></pre>
-<div style="width:600px">
-<p><img src="./bg-fg.png" alt="img" /></p>
-</div>
-</div><br> 
-<div dir="rtl">
-    <h1>
-تغییر رنگ تمام ترمینال
-    </h1>
-    دستور زیر رنگ زمینه‌ی تمام ترمینال را به بنقش تغییر می‌دهد.
-</div>
-<pre><code class="language-bash">echo -ne "\033]11;#53186f\007"
-</code></pre>
-<div style="width:600px">
-<p><img src="./bg-whole.png" alt="img" /></p>
-</div>
-<div dir="rtl">دستور بعدی رنگ پیش‌زمینه‌ی تمام ترمینال را به سبز تغییر می‌دهد.</div>
-<pre><code class="language-bash">echo -ne "\033]10;#00ff44\007"
-</code></pre>
-<div style="width:600px">
-<p><img src="./fg-whole.png" alt="img" /></p>
-</div>
-<br> 
-<br> 
-<div dir="rtl">
-    <h1>
-کارهای دیگری که می‌توان با کدهای انسی انجام داد
-    </h1>
-<h3>
-جابجایی نشانگر
-</h3>
-می‌توانید موقعیت نشانگر را در پنجره ترمینال کنترل کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[A</code></td><td>حرکت نشانگر به بالا</td></tr>
-<tr><td><code>\033[B</code></td><td>حرکت نشانگر به پایین</td></tr>
-<tr><td><code>\033[C</code></td><td>حرکت نشانگر به جلو (راست)</td></tr>
-<tr><td><code>\033[D</code></td><td>حرکت نشانگر به عقب (چپ)</td></tr>
-<tr><td><code>\033[&lt;row&gt;;&lt;column&gt;H</code></td><td>تنظیم موقعیت نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-پاک کردن متن
-    </h3>
- می‌توانید بخش‌هایی از صفحه یا کل صفحه را پاک کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[0J</code></td><td>پاک کردن صفحه از نشانگر تا انتها</td></tr>
-<tr><td><code>\033[1J</code></td><td>پاک کردن صفحه از ابتدا تا نشانگر</td></tr>
-<tr><td><code>\033[2J</code></td><td>پاک کردن کل صفحه</td></tr>
-<tr><td><code>\033[0K</code></td><td>پاک کردن خط از نشانگر تا انتها</td></tr>
-<tr><td><code>\033[1K</code></td><td>پاک کردن خط از ابتدا تا نشانگر</td></tr>
-<tr><td><code>\033[2K</code></td><td>پاک کردن کل خط</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    اسکرول
-    </h3>
-می‌توانید اسکرول را درون ترمینال کنترل کنید*
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[S</code></td><td>اسکرول به بالا یک خط</td></tr>
-<tr><td><code>\033[T</code></td><td>اسکرول به پایین یک خط</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h1>
-    نشانگر
-    </h1>
-    <h3>
-ذخیره و بازیابی موقعیت نشانگر
-    </h3>
-می‌توانید موقعیت فعلی نشانگر را ذخیره کرده و بعدا بازیابی کنید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[s</code></td><td>ذخیره موقعیت نشانگر</td></tr>
-<tr><td><code>\033[u</code></td><td>بازیابی موقعیت نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    مخفی کردن و نمایش نشانگر
-    </h3>
-ر می‌توانید نشانگر را مخفی یا نمایش دهید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\033[?25l</code></td><td>مخفی کردن نشانگر</td></tr>
-<tr><td><code>\033[?25h</code></td><td>نمایش نشانگر</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h3>
-    شکل نشانگر
-    </h3>
- می‌توانید نشانگر را به بلاک یا خط صاف تغییر دهید
-</div><br> 
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\e[0 q</code></td><td>(پیش‌فرض) شکل یک بلوک</td></tr>
-<tr><td><code>\e[1 q</code></td><td>شکل یک بلوک چشمک‌زن</td></tr>
-<tr><td><code>\e[3 q</code></td><td>شکل یک خط زیرین چشمک‌زن</td></tr>
-<tr><td><code>\e[4 q</code></td><td>شکل یک خط زیرین</td></tr>
-<tr><td><code>\e[5 q</code></td><td>شکل یک خط عمودی چشمک‌زن</td></tr>
-<tr><td><code>\e[6 q</code></td><td>شکل یک خط عمودی چشمک‌زن</td></tr>
-</tbody></table>
-</div><div dir="rtl">
-    <h1>
-    افکت‌های متن
-    </h1>
-</div>
-<div class="table-wrapper"><table><thead><tr><th>---</th><th>---</th></tr></thead><tbody>
-<tr><td><code>\e[1m</code></td><td>Bold</td></tr>
-<tr><td><code>\e[3m</code></td><td>Italic</td></tr>
-<tr><td><code>\e[4m</code></td><td>Underline</td></tr>
-<tr><td><code>\e[5m</code></td><td>Blink</td></tr>
-<tr><td><code>\e[7m</code></td><td>Invert colors</td></tr>
-</tbody></table>
-</div><br>
-<br> 
-<pre><code class="language-bash">echo -e "\033[30;42;3mHello World\033[0m"
-این دستور "درود جهان" را با رنگ مشکی در پس‌زمینه سبز به‌صورت ایتالیک چاپ می‌کند
-
-</code></pre>
-<hr><br><br> 
-<footer>
-       <div dir="rtl" style="text-align:center"> <p> مطالب این سایت بصورت مداوم
-       به‌روز‌رسانی می‌شوند.  برای دنبال کردن مطالب این سایت را
-       بوکمارک کنید.</p> <p>جهت حمایت مالی از پروژه،
-       در صورتی که در ایران هستید، روی دکمه‌ی <a
-       href="https://www.coffeete.ir/wolandark">برام قهوه بخر</a> کلیک
-       کنید.</p> <p>جهت ارتباط با نگارنده از طریق تلگرام یا ایمیل اقدام
-       کنید.</p>
-       </div>
-</footer>
-<div style="text-align: center">
-<p><a href="https://t.me/wolandarkside"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&amp;logo=telegram&amp;logoColor=white" alt="Telegram" /></a>
-<a href="mailto:contact-woland@proton.me"><img src="https://img.shields.io/badge/ProtonMail-8B89CC?style=for-the-badge&amp;logo=protonmail&amp;logoColor=white" alt="Protonmail" /></a></p>
-</div>
-<br>
-<br>
-<div style="break-before: page; page-break-before: always;"></div><div align="right">
-<a href="http://www.coffeete.ir/wolandark">
-       <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
-</a>
-</div>
-<div dir="rtl"><h1 id="ساخت-یک-hello-world--خلاقانه-با--bash"><a class="header" href="#ساخت-یک-hello-world--خلاقانه-با--bash"> ساخت یک Hello World  خلاقانه با  BASH</a></h1></div>
-<p><img src="./move_hello.gif" alt="move_hello.gif" /></p>
-<div dir="rtl">همانطور که می‌بینید با کلید‌های جهت می‌توانیم عبارت Hello World را جا‌به‌جا کنیم.</div>
-<pre><code class="language-bash">#!/usr/bin/env bash 
-
-shopt -s checkwinsize || return 1; (:;:)
-</code></pre>
-<div dir="rtl">
-خط دوم اسکریپت کلکی هوشمندانه برای چک کردن سایز ترمینال و ست کردن متغیر‌های COLUMNS و LINES است.
- این متغیرها هنگام تعامل کاربر با ترمینال ست می‌شوند و به همین خاطر استفاده از ‌آن‌ها در اسکریپت به کمی زیرکی نیاز دارد.
-<p><em>با استفاده از یک No Op ترمینال رو گول می‌زنیم تا توهم تعامل بزنه (😂) و متغیرها رو ست کنه.</em>
-<em>می‌تونستیم از</em></p>
-</div>
-<p><code>/usr/bin/true</code></p>
-<div dir="rtl">
-<p><em>هم استفاده کنیم ولی خیلی کار جالبی نیست!</em></p>
-<p>عبارت <code>(:;:)</code> در اصل هیچ‌کاری انجام نمی‌دهد اما باعث می‌شود تا ترمینال دو متغیر مورد نیاز را به شل گزارش دهد.
-<a href="https://stackoverflow.com/questions/12404661/what-is-the-use-case-of-noop-in-bash">درباره‌  noop بیشتر بخوانید</a></p>
-<p>در قسمت بعدی مختصات  میانه‌ی ترمینال رو محاسبه می‌کنیم. این کار ضروری نیست. می‌توانستیم به سادگی x و y رو به COLUMNS و LINES اختصاص بدیم یا حتا مستقیما از COLUMNS و LINES استفاده کنیم.
-دقت کنید که در نحو ریاضی بش، یعنی در Arithmetic Syntax ،نیازی به استفاده از سیجیل $ برای متغیرها نداریم.</p>
-</div>
-<pre><code class="language-bash">x=$(( COLUMNS / 2 ))
-y=$(( LINES / 2 ))
-</code></pre>
-<div dir="rtl">با استفاده از کد انسی می‌توانیم عبارت خود را در مکان مشخصی در ترمینال چاپ کنیم.</div>
-<pre><code class="language-bash">printf "\e[10;20H Hello"
-</code></pre>
-<div dir="rtl">مختصات ۱۰ و ۲۰ مکان نشانگر هنگام چاپ را مشخص می‌کند.
-این کد را به شکل زیر نیز می‌توان نوشت:
-</div>
-<pre><code class="language-bash">printf "\e[%d;%dH Hello" 10 20
-</code></pre>
-<div dir="rtl">
-این نحو مرسوم نوشتار printf است. d% یک format specifier یا همان placeholder برای مقداری است که بعد از آن معین می‌شود. d% به معنی digit یا عدد صحیح است.
-برای اطلاعات بیشتر، `man printf` و `man 3 printf`را ببینید.
-<p>پس تا اینجای کار کد ما به شکل زیر است:</p>
-</div>
-<pre><code class="language-bash">#!/usr/bin/env bash 
-
-shopt -s checkwinsize || return 1; (:;:)
-
-x=$(( COLUMNS / 2 ))
-y=$(( LINES / 2 ))
-
-printf "\e[%d;%dH Hello" $y $x
-
-</code></pre>
-<div dir="rtl">
-در قسمت بعدی کلید‌های جهت را تعریف می‌کنیم. برای این‌کار از `cat -v` استفاده می کنیم تا کد ASCII کلید‌ها را یاد بگیریم.
-</div>
-<p><img src="./arrow.png" alt="img" /></p>
-<div dir="rtl">
-<p><em>به ترتیب از چپ، بالا پایین چپ راست.</em></p>
-<p>برای خواندن یک متغیر از STDIN طبق معمول از read استفاده می‌کنیم.</p>
-<p>بنابراین برای دنبال کردن کلید‌هایی که توسط کاربر فشرده می‌شوند به شیوه‌ی زیر عمل می‌کنیم:</p>
-</div>
-<pre><code class="language-bash">read -rsn3 key
-</code></pre>
-<div dir="rtl">
-<p>فلگ‌های rsn3 به ترتیب برای خواندن بک‌اسلش‌ها، سکوت خروجی و خواندن مشخصا ۳ حرف از ورودی استفاده می‌شوند.
-برای اطلاعات بیشتر، <code>man read</code> را ببینید.</p>
-<p>حالا با ترکیب یک لوپ و یک کیس مقادیر x و y را تغییر داده، ترمینال را پاک کرده و عبارت را مجدد چاپ می‌کنیم تا حرکت عبارت میسر شود.</p>
-</div>
-<pre><code class="language-bash">while :; do
-
-    read -rsn3 key
-    clear
-
-    case "$key" in
-        $'\e[A') ((y--));;
-        $'\e[B') ((y++));;
-        $'\e[C') ((x++));;
-        $'\e[D') ((x--));;
-    esac
-
-	printf "\e[%d;%dH Hello" $y $x
-done
-</code></pre>
-<div dir="rtl">
-<p><em>نحو خاص <code>;:</code> به معنی true است.</em></p>
-<p>تمام کد تا اینجا:</p>
-</div>
-<pre><code class="language-bash">#!/usr/bin/env bash 
-
-shopt -s checkwinsize || return 1; (:;:)
-
-x=$(( COLUMNS / 2 ))
-y=$(( LINES / 2 ))
-
-while :; do
-
-		printf "\e[%d;%dH Hello" $y $x
-    
-		read -rsn3 key
-    clear
-
-    case "$key" in
-        $'\e[A') ((y--));;
-        $'\e[B') ((y++));;
-        $'\e[C') ((x++));;
-        $'\e[D') ((x--));;
-    esac
-done
-</code></pre>
-<div dir="rtl">
-<p><em>دقت کنید که در صورتی‌ که printf  بعد از case قرار بگیرد، تا دریافت کلیدی از کاربر چیزی چاپ نخواهد شد.</em></p>
-</div>
-<p><img src="./move_hello_simple.gif" alt="move_hello_simple.gif" /></p>
-<div dir="rtl">همانطور که  در گیف می‌بینید، تفاوت‌هایی بین گیف اول و  نتیجه‌ی فعلی کد ما وجود دارد.</div>
-<div dir="rtl">
-<ul>
-<li>نشانگر پنهان نشده است</li>
-<li>ترمینال به موقع پاک نمی‌شود</li>
-<li>محتوای پیشین ترمینال حفظ نمی‌شود</li>
-</ul>
-</div>
-<div dir="rtl">برای پنهان کردن نشانگر از یک کد انسی استفاده می‌کنیم:</div>
-<pre><code class="language-bash">printf "\e[?25l"
-</code></pre>
-<div dir="rtl">
-<p>دستور انسی بالا به شکل <code>echo -ne "\033[?25l"</code> یا <code>printf "\033[?25l"</code>نیز می‌توانست نوشته شود. ( این قاعده بر باقی دستورات هم صدق می‌کند)</p>
-<p>هردوی  e\ و 033\ کد اسکی ۲۷ (ASCII 27)  را به ترمینال دیکته می‌کنند. e\ یک escape sequence است که معنی  ASCII 27   می‌دهد و 033\ نوشتار اوکتال همان است.</p>
-<p>برای حفظ  محتوای پیشین ترمینال از قابلیت Alt Screen  استفاده می‌کنیم. این قابلیت که با یک کد انسی فعال می‌شود باعث می‌شود تا برنامه‌ی ما در یک بافر جداگانه اجرا شود. این همان ویژگی است که برنامه‌هایی همچون ویم  از آن استفاده می‌کنند.</p>
-</div>
-<pre><code class="language-bash">printf "\x1b[?1049h"
-</code></pre>
-<div dir="rtl">برای ظاهر کردن نشانگر و بازگشتن به بافر اصلی به ترتیب از دستورات انسی زیر استفاده می‌کنیم:</div>
-<pre><code class="language-bash">printf "\e[?25l"
-printf "\x1b[?1049h"
-</code></pre>
-<div dir="rtl">بنابراین می توانیم دو تابع برای اعمال تنظیمات لازم پیش از اجرای قسمت اصلی کد، و برای بازگرداندن حالت پیشین ترمینال داشته باشیم.</div>
-<pre><code class="language-bash">setupTerm() {
-    printf "\x1b[?1049h"
-    printf "\e[?25l"
-}
-
-restoreTerm() {
-    printf "\x1b[?1049l"
-    printf "\x1B[?25h"
-}
-</code></pre>
-<div dir="rtl">همچنین برای منظم کردن کد، برای چاپ عبارت نیز یک تابع می‌سازیم:</div>
-<pre><code class="language-bash">printHello() {
-    printf '\e[%d;%dH Hello World' $y $x
-}
-</code></pre>
-<div dir="rtl">حالا کافیست توابع را به نوبت و در جای درست صدا بزنیم تا کار خود را انجام دهند.</div>
-<pre><code class="language-bash">#!/usr/bin/env bash 
-
-shopt -s checkwinsize || return 1; (:;:)
-
-x=$(( COLUMNS / 2 ))
-y=$(( LINES / 2 ))
-
-setupTerm() {
-    printf "\x1b[?1049h"
-    printf "\e[?25l"
-}
-
-restoreTerm() {
-    printf "\x1b[?1049l"
-    printf "\x1B[?25h"
-}
-
-printHello() {
-    printf '\e[%d;%dH Hello World' $y $x
-}
-
-setupTerm
-
-trap 'restoreTerm;exit' SIGINT
-
-printHello
-
-while :; do
-
-    read -rsn3 key
-    clear
-
-    case "$key" in
-        $'\e[A') ((y--));;
-        $'\e[B') ((y++));;
-        $'\e[C') ((x++));;
-        $'\e[D') ((x--));;
-    esac
-
-    printHello
-done
-</code></pre>
-<div dir="rtl">
-<p>برای اینکه تابع restoreTerm هنگام خروج و دریافت SIGINT یعنی Ctrl-c اجرا شود، از trap استفاده می‌کنیم.
-برای اطلاعات بیشتر <code>man trap </code> ببنید.</p>
-</div>
-<hr><br><br> 
-<footer>
-       <div dir="rtl" style="text-align:center"> <p> مطالب این سایت بصورت مداوم
-       به‌روز‌رسانی می‌شوند.  برای دنبال کردن مطالب این سایت را
-       بوکمارک کنید.</p> <p>جهت حمایت مالی از پروژه،
-       در صورتی که در ایران هستید، روی دکمه‌ی <a
-       href="https://www.coffeete.ir/wolandark">برام قهوه بخر</a> کلیک
-       کنید.</p> <p>جهت ارتباط با نگارنده از طریق تلگرام یا ایمیل اقدام
-       کنید.</p>
-       </div>
-</footer>
-<div style="text-align: center">
-<p><a href="https://t.me/wolandarkside"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&amp;logo=telegram&amp;logoColor=white" alt="Telegram" /></a>
-<a href="mailto:contact-woland@proton.me"><img src="https://img.shields.io/badge/ProtonMail-8B89CC?style=for-the-badge&amp;logo=protonmail&amp;logoColor=white" alt="Protonmail" /></a></p>
-</div>
-<br>
-<br>
-<div style="break-before: page; page-break-before: always;"></div><div dir="rtl">بیاین بازی ساده زیر رو بسازیم</div>
-<p><img src="Minesweep/Transcript/../_resources/demo.gif" alt="demo.gif" /></p>
+                        <div dir="rtl">بیاین بازی ساده زیر رو بسازیم</div>
+<p><img src="../_resources/demo.gif" alt="demo.gif" /></p>
 <div dir="rtl">در ابتدا به سایز ترمینال نیاز داریم</div>
 <pre><code class="language-bash">cols=$(tput cols)
 lines=$(tput lines)
@@ -587,7 +183,7 @@ echo $cols
 echo $lines
 </code></pre>
 <div dir="rtl">تی‌پات یک پکیجیه که با ncurses نصب می‌شه و روی اکثر سیستم‌ها هست</div>
-<p><img src="Minesweep/Transcript/../_resources/ec017c947f2f156f59e08bb68297aef7.png" alt="ec017c947f2f156f59e08bb68297aef7.png" /></p>
+<p><img src="../_resources/ec017c947f2f156f59e08bb68297aef7.png" alt="ec017c947f2f156f59e08bb68297aef7.png" /></p>
 <div dir="rtl">دومین کارمون اینه که محیط یا همون فیلد بازی رو مشخص کنیم.  </div>
 <div dir="rtl">خب برای این کار باید بتونیم یک کاراکتری رو توی تمام خونه ‌های ترمینال چاپ کنیم.</div>
 <pre><code class="language-bash">cols=$(tput cols)
@@ -600,7 +196,7 @@ for ((i=0; i &lt; cols; i++)); do
     done
 done
 </code></pre>
-<p><img src="Minesweep/Transcript/../_resources/44dbb3c62a2171a4893f8b702c21398a.png" alt="44dbb3c62a2171a4893f8b702c21398a.png" /></p>
+<p><img src="../_resources/44dbb3c62a2171a4893f8b702c21398a.png" alt="44dbb3c62a2171a4893f8b702c21398a.png" /></p>
 <div dir="rtl"><div dir="rtl">از اونجایی که لاین‌ها دارن یکم اسکرول می‌دن و ما این پایین ترمینالو می‌خوایم واسه اینکه بعدا میزان جون و تعداد حدس ‌های درست رو نشون بدیم، تعداد لاین‌ها رو کم می‌کنیم</div></div>
 <pre><code class="language-bash">cols=$(tput cols)
 lines=$(tput lines)
@@ -642,7 +238,7 @@ done
 # Move cursor back to the bottom
 tput cup "$lines" 0
 </code></pre>
-<p><img src="Minesweep/Transcript/../_resources/b17844fb38b0388a70eaedbbeb2b1b6e.png" alt="b17844fb38b0388a70eaedbbeb2b1b6e.png" /></p>
+<p><img src="../_resources/b17844fb38b0388a70eaedbbeb2b1b6e.png" alt="b17844fb38b0388a70eaedbbeb2b1b6e.png" /></p>
 <div dir="rtl">بعدا یک تابع move cursor میسازیم ولی فعلا با تی‌پات کارمونو راه میندازیم</div>
 <div dir="rtl">اگه بخوایم هم ستاره چاپ کنیم و هم خط فاصله میتونیم به سبک کد قبلی برگردیم  </div>
 <div dir="rtl">حالا که دیدیم چطوری جاهای رندم میشه چاپ کرد</div>
@@ -682,7 +278,7 @@ for ((i=0; i &lt; lines - 4; i++)); do
     printf '\n'
 done
 </code></pre>
-<p><img src="Minesweep/Transcript/../_resources/45a129a9b27b87ffdde40b4563203638.png" alt="45a129a9b27b87ffdde40b4563203638.png" /></p>
+<p><img src="../_resources/45a129a9b27b87ffdde40b4563203638.png" alt="45a129a9b27b87ffdde40b4563203638.png" /></p>
 <div dir="rtl">حالا خوبه که مکان مین‌هارو پنهان کنیم و واسه این کل ترمینال رو با کاراکتر یونیکد بلوک پر می‌کنیم</div>
 <div dir="rtl">برای وارد کردن کاراکتر یونیکد توی ویم در حالت insert به این شکل عمل می‌کنیم`C-v u2588`</div>
 <pre><code class="language-bash">cols=$(tput cols)
@@ -710,11 +306,11 @@ for ((i=0; i &lt; lines - 4; i++)); do
 done
 </code></pre>
 <div dir="rtl">تا اینجای کار ما یک زمین بازی درست کردیم</div>
-<p><img src="Minesweep/Transcript/../_resources/cb5342614cf7b2fc15e9902819a5f642.png" alt="cb5342614cf7b2fc15e9902819a5f642.png" /></p>
+<p><img src="../_resources/cb5342614cf7b2fc15e9902819a5f642.png" alt="cb5342614cf7b2fc15e9902819a5f642.png" /></p>
 <div dir="rtl">حالا وقتشه که رنگ زمین بازی‌مون رو عوض کنیم</div>
 <p><code>printf '\033[1;33m█\033[0m'</code></p>
 <div dir="rtl">با استفاده از کد انسی بالا  رنگ پیش زمینه ترمینال رو زرد می‌کنیم و بلوک هارو چاپ می‌کنیم</div>
-<p><img src="Minesweep/Transcript/../_resources/2ba36fd870fcc526c2cc394273263dbd.png" alt="2ba36fd870fcc526c2cc394273263dbd.png" /></p>
+<p><img src="../_resources/2ba36fd870fcc526c2cc394273263dbd.png" alt="2ba36fd870fcc526c2cc394273263dbd.png" /></p>
 <div dir="rtl">حالا باید راهی برای آزادانه حرکت دادن نشان‌گر پیدا کنیم. با جستجو در  man 1 stty  با قابلیت raw آشنا می‌شویم. همچنین با استفاده از دستور   read  میتوانیم کلید های ورودی را بخوانیم</div>
 <pre><code class="language-bash"># Enable raw input mode
 stty -raw
@@ -942,7 +538,7 @@ main
 	fi
 }
 </code></pre>
-<p><img src="Minesweep/Transcript/../_resources/286d1c0b7161dcf0edaa0572fa01a5f1.png" alt="286d1c0b7161dcf0edaa0572fa01a5f1.png" /></p>
+<p><img src="../_resources/286d1c0b7161dcf0edaa0572fa01a5f1.png" alt="286d1c0b7161dcf0edaa0572fa01a5f1.png" /></p>
 <div dir="rtl">تقریباً کارمان تمام شده است. تنها کاری که باید انجام دهیم این است که متغیرهایی برای سلامتی و مرحله اضافه کنیم و منطق‌های کوچکی برای زمانی که کاربر برنده یا بازنده شده، اضافه کنیم. چاپ اطلاعات در پایین ترمینال مثل قبل آسان است و می‌توانیم از تابع move_cursor خود استفاده کنیم.</div>
 <pre><code class="language-bash">round=0;
 hp=5;
@@ -1125,6 +721,9 @@ game_loop
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../HelloWorld.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -1133,6 +732,9 @@ game_loop
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../HelloWorld.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -1146,21 +748,16 @@ game_loop
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
