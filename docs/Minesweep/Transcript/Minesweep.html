@@ -215,33 +215,34 @@ lines=$(tput lines)
 
 num_stars=20
 
-# Initialize an array to store random coordinates for stars
 declare -A star_positions
 
-# Generate random positions for stars
 for ((n=0; n&lt;num_stars; n++)); do
     rand_col=$((RANDOM % cols))
     rand_line=$((RANDOM % (lines - 4)))
     star_positions["$rand_line,$rand_col"]=1
 done
 
-# Print only stars at random positions
 for ((i=0; i &lt; lines - 4; i++)); do
     for ((j=0; j &lt; cols; j++)); do
         if [[ ${star_positions["$i,$j"]} ]]; then
-            tput cup "$i" "$j"   # Move cursor to the star position
+            tput cup "$i" "$j"
             printf '*'
         fi
     done
 done
 
-# Move cursor back to the bottom
 tput cup "$lines" 0
 </code></pre>
 <p><img src="../_resources/b17844fb38b0388a70eaedbbeb2b1b6e.png" alt="b17844fb38b0388a70eaedbbeb2b1b6e.png" /></p>
-<div dir="rtl">بعدا یک تابع move cursor میسازیم ولی فعلا با تی‌پات کارمونو راه میندازیم</div>
-<div dir="rtl">اگه بخوایم هم ستاره چاپ کنیم و هم خط فاصله میتونیم به سبک کد قبلی برگردیم  </div>
-<div dir="rtl">حالا که دیدیم چطوری جاهای رندم میشه چاپ کرد</div>
+<div dir="rtl">
+یک آرایه اسوشیتیو (آرایه کلید-مقدار) به نام `star_positions` ایجاد می‌کنیم.از این آرایه برای ذخیره کردن ستون و سطر رندم استفاده می‌کنیم.پس از آن در لوپ اول، برای هر ستاره، موقعیت تصادفن را در ترمینال تعیین می‌کنیم. موقعیت ستاره در آرایه `star_positions` با کلید `"$rand_line,$rand_col"` ذخیره می‌شود. بعدا یک تابع move cursor میسازیم ولی فعلا با تی‌پات کارمونو راه میندازیم</div>
+<div dir="rtl">
+اگه بخوایم هم ستاره چاپ کنیم و هم خط فاصله میتونیم به سبک کد قبلی برگردیم.  </div>
+<br>
+<div dir="rtl">
+حالا که دیدیم چطور می‌شه در جاهای رندم کاراکتری رو چاپ کرد،به شکل زیر عمل می‌کنیم.
+</div>
 <pre><code class="language-bash">for ((i=0; i &lt; lines - 4; i++)); do
     for ((j=0; j &lt; cols; j++)); do
         if [[ ${star_positions["$i,$j"]} ]]; then
@@ -279,8 +280,9 @@ for ((i=0; i &lt; lines - 4; i++)); do
 done
 </code></pre>
 <p><img src="../_resources/45a129a9b27b87ffdde40b4563203638.png" alt="45a129a9b27b87ffdde40b4563203638.png" /></p>
-<div dir="rtl">حالا خوبه که مکان مین‌هارو پنهان کنیم و واسه این کل ترمینال رو با کاراکتر یونیکد بلوک پر می‌کنیم</div>
+<div dir="rtl">حالا خوبه که مکان مین‌هارو پنهان کنیم و واسه این کار تمام ترمینال رو با کاراکتر یونیکد بلوک پر می‌کنیم</div>
 <div dir="rtl">برای وارد کردن کاراکتر یونیکد توی ویم در حالت insert به این شکل عمل می‌کنیم`C-v u2588`</div>
+<div dir="rtl">یعنی کنترل+v و بعد کد یونیکد رو وارد می‌کنیم.</div>
 <pre><code class="language-bash">cols=$(tput cols)
 lines=$(tput lines)
 
@@ -311,7 +313,9 @@ done
 <p><code>printf '\033[1;33m█\033[0m'</code></p>
 <div dir="rtl">با استفاده از کد انسی بالا  رنگ پیش زمینه ترمینال رو زرد می‌کنیم و بلوک هارو چاپ می‌کنیم</div>
 <p><img src="../_resources/2ba36fd870fcc526c2cc394273263dbd.png" alt="2ba36fd870fcc526c2cc394273263dbd.png" /></p>
-<div dir="rtl">حالا باید راهی برای آزادانه حرکت دادن نشان‌گر پیدا کنیم. با جستجو در  man 1 stty  با قابلیت raw آشنا می‌شویم. همچنین با استفاده از دستور   read  میتوانیم کلید های ورودی را بخوانیم</div>
+<div dir="rtl">
+حالا باید راهی برای آزادانه حرکت دادن نشان‌گر پیدا کنیم. با جستجو در  man 1 stty  با قابلیت raw آشنا می‌شیم. همچنین با استفاده از دستور   read  می‌تونیم کلید های ورودی را بخونیم
+</div>
 <pre><code class="language-bash"># Enable raw input mode
 stty -raw
 
@@ -348,9 +352,9 @@ done
 stty echo icanon
 </code></pre>
 <div dir="rtl">
-قطعه‌ی بالا به‌خوبی توضیح شده تا متوجه شوید هر قسمت چه کاری انجام می‌دهد، اما به جزئیات بیشتری نمی‌پردازیم. اگر علاقه‌مند هستید، می‌توانید برای اطلاعات بیشتر به `man stty` و `man read` مراجعه کنید.
-<p>در سطح بعدی باید روشی پیدا کنیم تا بتوانیم موقعیت ستاره‌های تصادفی را ردیابی کرده و سپس در صورتی که کاربر کلید Enter را روی آن‌ها فشار دهد، آن‌ها را با چیزی جایگزین کنیم.</p>
-<p>اما ابتدا کد خود را سازماندهی خواهیم کرد. تاکنون به یک تابع draw_grid، تابع replace_stars و یک حلقه‌ی اصلی بازی (game_loop) نیاز داریم، که در آن حالت raw را فعال خواهیم کرد. همچنین یک تابع move_cursor و متغیرهای cursor_row و cursor_col را تعریف می‌کنیم تا حرکت مکان‌نما را آسان‌تر مدیریت کنیم. این کار به ما اجازه می‌دهد کدهای ANSI که مکان‌نما را در کد بالا جابجا می‌کردند، حذف کنیم.</p>
+قطعه‌ی بالا به‌خوبی کامنت شده تا متوجه بشید هر قسمت چه کاری انجام می‌ده، اما به جزئیات بیشتری نمی‌پردازیم. اگه علاقه‌مند هستید، می‌تونید برای اطلاعات بیشتر به `man stty` و `man read` مراجعه کنید.
+<p>در سطح بعدی باید روشی پیدا کنیم تا بتونیم موقعیت ستاره‌های تصادفی رو ردیابی کنیم و بعد در صورتی که کاربر کلید Enter رو روی اون‌ها فشار داد، اون‌ها رو با چیزی جایگزین کنیم.</p>
+<p>اما ابتدا کد خودمون رو سازماندهی می‌کنیم. تااینجا به یک تابع draw_grid، تابع replace_stars و یک حلقه‌ی اصلی بازی (game_loop) نیاز داریم، که توی اون حالت raw را فعال می‌کنیم. همچنین یک تابع move_cursor و متغیرهای cursor_row و cursor_col رو تعریف می‌کنیم تا حرکت مکان‌نما رو آسون‌تر مدیریت کنیم. این کار به ما اجازه می‌ده کدهای ANSI که مکان‌نما را در کد بالا جابجا می‌کردن، حذف کنیم.</p>
 </div>
 <pre><code class="language-bash">cursor_row=$((lines - 5))
 cursor_col=0
@@ -413,7 +417,9 @@ game_loop() {
 	done
 }
 </code></pre>
-<div dir="rtl">باید برخورد با ستاره‌ها را پیاده‌سازی کنیم. باید بتوانیم وقتی کاربر کلید Enter را روی ستاره‌ها فشار می‌دهد، آن‌ها را با کاراکتر دیگری جایگزین کنیم.</div>
+<div dir="rtl">
+جالا باید برخورد با ستاره‌ها را پیاده‌سازی کنیم. باید بتونیم وقتی کاربر کلید Enter رو روی ستاره‌ها فشار می‌ده، اون‌ها رو با کاراکتر دیگه‌ای جایگزین کنیم.
+</div>
 <pre><code class="language-bash">replace_star() {
     if [[ ${star_positions["$cursor_row,$cursor_col"]} ]]; then
         # Clear the star and replace it with '#'
@@ -509,9 +515,10 @@ function main() {
 }
 main
 </code></pre>
-<div dir="rtl">حالا وقتش رسیده که انفجارها را بسازیم. برای این کار، تابع replace_star خود را اصلاح خواهیم کرد.</div>
-<pre><code class="language-bash">replace_star()
-{
+<div dir="rtl">
+حالا وقتش رسیده که انفجارها رو بسازیم. برای این کار، تابع replace_star خودمون رو اصلاح می‌کنیم.
+</div>
+<pre><code class="language-bash">replace_star() {
 	if [[ ${star_positions["$cursor_row,$cursor_col"]} ]]; then
 		star_positions["$cursor_row,$cursor_col"]=0
 
@@ -539,7 +546,9 @@ main
 }
 </code></pre>
 <p><img src="../_resources/286d1c0b7161dcf0edaa0572fa01a5f1.png" alt="286d1c0b7161dcf0edaa0572fa01a5f1.png" /></p>
-<div dir="rtl">تقریباً کارمان تمام شده است. تنها کاری که باید انجام دهیم این است که متغیرهایی برای سلامتی و مرحله اضافه کنیم و منطق‌های کوچکی برای زمانی که کاربر برنده یا بازنده شده، اضافه کنیم. چاپ اطلاعات در پایین ترمینال مثل قبل آسان است و می‌توانیم از تابع move_cursor خود استفاده کنیم.</div>
+<div dir="rtl">
+تقریباً کارمون تموم شده. تنها کاری که باید انجام بدیم اینه که متغیرهایی برای سلامتی و مرحله اضافه کنیم و منطق‌های کوچکی برای زمانی که کاربر برنده یا بازنده شده، اضافه کنیم. چاپ اطلاعات در پایین ترمینال مثل قبل آسونه و می‌تونیم از تابع move_cursor خودمون استفاده کنیم.
+</div>
 <pre><code class="language-bash">round=0;
 hp=5;
 win=0;
@@ -555,8 +564,10 @@ printf "HP: $hp"
 <pre><code class="language-bash">((round++))
 ((hp--))
 </code></pre>
-<div dir="rtl">بدین وسیله می‌توانیم`round` رو کم کنیم و`hp` زیاد کنیم  </div>
-<div dir="rtl">باقی کد هم توی یک لاجیک ساده wrap می‌کنیم</div>
+<div dir="rtl">
+به این شکل می‌تونیم`round` رو کم کنیم و`hp` زیاد کنیم  </div>
+<div dir="rtl">
+باقی کد هم توی یک لاجیک ساده wrap می‌کنیم</div>
 <pre><code class="language-bash">if [[ $round -ge 6 ]]; then
 	tput reset
 	figlet "GAME OVER"
@@ -565,7 +576,9 @@ else
 	((win++))
 fi
 </code></pre>
-<div dir="rtl">و کد زیر رو قبل` fi `بالا قرار می دیم</div>
+<div dir="rtl">
+و کد زیر رو قبل` fi `بالا قرار می دیم
+</div>
 <pre><code class="language-bash">if [[ $win -eq 20 ]]; then
 	tput reset
 	echo "Round Cleared!"
@@ -716,6 +729,7 @@ generate_star_positions
 draw_grid
 game_loop
 </code></pre>
+<p>و به همین سادگی بازی ما تموم شد. قطعا جای خیلی زیادی برای ارتقای این بازی وجود داره، اما با اطلاعاتی که توی این نوشته یاد گرفتید، می‌تونین خودتون بی‌نهایت این کد رو ارتفا بدین.</p>
 
                     </main>
 
